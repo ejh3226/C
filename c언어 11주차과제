@@ -228,7 +228,7 @@ int main(void)
 #include <stdio.h>
 #include <math.h>
 
-int manu(void)   //실행하고 처음 보이는 함수 이걸 보고 무슨 계산을 할지 정한다.
+int mnu(void)   //실행하고 처음 보이는 함수 이걸 보고 무슨 계산을 할지 정한다.
 {
     int n;
     printf("1,팩토리얼\n");
