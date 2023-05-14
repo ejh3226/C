@@ -1,0 +1,301 @@
+60p
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int coin_toss(void);//coin_toss() 함수 원형
+
+int main(void)
+{
+
+    int toss;//동전 던지는 횃수
+    int heads = 0;//동전의 앞면
+    int tails = 0;//동전의 뒷면
+    srand((unsigned)time(NULL));//난수를 발생시키기 위한 시드
+
+    for (toss = 0; toss < 100; toss++){//동전을 100번 던지게 실행
+        if(coin_toss() == 1)//coin_toss()가 1이라면 동전의 앞면인 heads의 값을 한 번 증가 1이 아니라면 뒷면인 tails의 값이 증가
+        {heads++;}
+        else
+        {tails++;}
+    }
+    printf("동전의 앞면:%d\n",heads);
+    printf("동전의 뒷면:%d\n", tails);
+    return 0;
+}
+
+int coin_toss(void)
+{
+    int head = rand() % 2;    //난수의 값을 2로 나눈 나머지값을 head에 초기화시킴 head에는1 아니면 0만 들어간다.
+    return head;     //head값을 반환해준다.
+}
+
+
+
+
+63p~66p
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <time.h>
+
+void disp_car(int car_number, int distance)
+{
+    int i;
+    printf("CAR #%d:", car_number);   //자동차 번호
+    for(i = 0; i< distance/10; i++){   //차의 주행거리를 10으로 나눈 수만 별을 찍는다.
+        printf("*");
+    }
+    printf("\n");
+}
+
+int main(void)
+{
+    int i;
+    int car1_dist=0, car2_dist=0;
+
+    srand((unsigned)time(NULL));  //난수를 발생시키기 위한 시드
+
+    for(i = 0; i < 6; i++){
+        car1_dist += rand() % 100;  //100으로 나눈 나머지는 100 미만임을 이용하여 난수의 범위를 0부터99로 제한
+        car2_dist += rand() % 100;
+        disp_car(1, car1_dist);
+        disp_car(2, car2_dist);
+        printf("-------------------\n");
+        _getch();
+    }
+    return 0;
+}
+
+
+
+
+67p
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <time.h>
+
+void disp_car(int car_number, int distance)
+{
+    int i;
+    printf("CAR #%d:", car_number);   //자동차 번호
+    for(i = 0; i< distance/10; i++){   //차의 주행거리를 10으로 나눈 수만 별을 찍는다.
+        printf("*");
+    }
+    printf("\n");
+}
+
+int main(void)
+{
+    int i;
+    int car1_dist=0, car2_dist=0, car3_dist = 0;
+
+    srand((unsigned)time(NULL));  //난수를 발생시키기 위한 시드
+
+    for(i = 0; i < 6; i++){
+        car1_dist += rand() % 100;  //100으로 나눈 나머지는 100 미만임을 이용하여 난수의 범위를 0부터99로 제한
+        car2_dist += rand() % 100;
+        car3_dist += rand() % 100;
+        disp_car(1, car1_dist);
+        disp_car(2, car2_dist);
+        disp_car(3, car3_dist);
+        printf("-------------------\n");
+        _getch();
+    }
+    return 0;
+}
+
+
+73p
+#include <stdio.h>
+#include <math.h>  //삼각함수를 사용하기 위한 라이브러리
+
+int main(void)
+{
+    double pi = 3.1415926535;   //파이값을 더블로 초기화 int는 정수만 쓸 수 있음
+    double x, y;
+
+    x = pi / 2;    //90도
+    y = sin(x);     //sin90도
+    printf("sin(%f) = %f\n",x, y);  //sin값 출력 
+    y = cos(x);    //cos90도
+    printf("cos(%f) = %f\n", x, y);  //cos값 출력
+}
+
+
+
+
+76p
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+    system("dir");  //dir명령 실행
+    printf("아무 키나 치세요.\n");
+    _getch();      //하나의 문자를 받는 함수. 출력은 하지 않는다
+    system("cls");
+
+    return 0;
+}
+
+
+
+
+77~78p
+#include <stdio.h>
+#include <time.h>
+
+int main(void)
+{
+    time_t start, end;   //time_t는 unsigend long과 동일
+    start = time(NULL);  //시작한 시간을 start에 받는다.
+    printf("10초가 되면 아무 키나 누르세요.\n");
+    while(1){
+        if (getchar())  //getchar로 문자를 받을때까지 대기 했다가 문자를 받으면 break로 while문을 나온다.
+            break;
+    }
+    printf("종료되었습니다.\n");
+    end = time(NULL);  //종료된 시간을 end에 받는다.
+    printf("경과된 시간은 %ld초 입니다.", end - start);
+    return 0;
+}
+
+
+
+79~80p
+#define_CRT_SECURE_NO_WARNINGS
+#include <math.h>
+#include <stdio.h>
+
+int main(void)
+{
+    double height, distance, tree_hieght, degrees, radians;  //모든 수학 함수는 bouble형의 인수를 받는다.
+    printf("나무와의 길이(단위는 미터):");  
+    scanf("%lf,&distance");
+
+    printf("측정자의 키(단위는 미터):");
+    scanf("%lf,&height");
+
+    printf("각도(단위는 도):");
+    scanf("%lf,&degrees");
+
+    radians = degrees * (3.141592 / 180.0);   //측정한 각도를 라디안으로 바꿔주는 식
+
+    tree_hieght = tan(radians) * distance + height;  //tan함수를 이용하여 나무의 높이를 측정하는 식
+    printf("나무의 높이(단위는 미터):%lf\n",tree_hieght);
+
+    return 0;
+}
+
+
+
+
+81~82p
+#include <stdio.h>
+#include <math.h>
+#define PI 3.141592  //전처리기로 PI를3.141592로 지정
+
+double rad(double degree)   //각도를 라디안으로 바꾸는 함수
+{
+    return PI * degree / 180.0;   //계산된 라디안 값을 반환
+}
+
+void drawbar (int height)
+{
+    for (int i = 0; i < height; i++)
+        {printf("*");}          //삼각함수의 모양을 그리게 하는 for문
+    printf("\n");
+}
+
+int main(void)
+{
+    int degree, x, y;
+    for (degree = 0; degree <= 90; degree += 10){
+        //싸인값은 -1.0에서 1.0 이므로 정수로 반올림 하여 증폭
+        y = (int)(60 * sin(rad((double)degree)) + 0.5);   //소수점 이하를 버리기 위해 int로 형변환
+        drawbar(y);
+    }
+    return 0;
+}
+
+
+
+
+
+85~89p
+#include <stdio.h>
+#include <math.h>
+
+int manu(void)   //실행하고 처음 보이는 함수 이걸 보고 무슨 계산을 할지 정한다.
+{
+    int n;
+    printf("1,팩토리얼\n");
+    printf("2.싸인\n");
+    printf("3.로그(base 10\n");
+    printf("4.제곱근\n");
+    printf("5.순열(nPr\n");
+    printf("6.조합(nCr\n");
+    printf("7.종료\n");
+    printf("선택해주세요: \n");
+    scanf("%d", &n);
+    return n;
+}
+
+void factorial()  //팩토리얼을 계산하기 위한 함수
+{
+    long long n, result=1, i;
+    printf("정수를 입력하시오: ");
+    scanf("%lld", &n);
+    for (i = 1; i <= n; i++)   //팩토리얼을 구하는 for문 i가 n이 될때까지 반복하고 i값을 곱하여 팩토리얼 계산
+    {result = result * i;}
+    printf("결과 = %lld\n\n",result);
+}
+
+void sine()   //sin함수를 계산해주는 함수
+{
+    double a, result;   //모든 수학 함수는 bouble형의 인수를 받는다.
+    printf("각도를 입력하시오: ");
+    scanf("%lf",&a);
+    result = sin(a);
+    printf("결과 = %lf\n\n", result);
+}
+
+void logBase10()  //log를 계산해주는 함수
+{
+    double a, result;
+    printf("실수값을 입력하시오: ");
+    scanf("%lf", &a);
+    if(a <= 0.0)
+    {
+            printf("오류\n");   //변수는 0보다 커야한다는 조건을 위한 if문
+    }
+    else{
+        result = log10(a);    //계산된 log값을 result에 담는다.
+        printf("결과 = %lf\n\n", result);
+    }
+}
+
+int main(void)    //사용자가 입력한 값을 받아서 출력
+{
+    while(1){    //사용자가 종료할때 까지 반복
+        switch (menu()){    //switch문에서 menu의 값을 받아서 해당 함수로 계산 
+            case 1:
+                factorial();
+                break;
+            case 2:
+                sine();
+                break;
+            case 3:
+                logBase10();
+                break;
+            case 7:
+                printf("종료합니다.\n");
+                return 0;
+            default:
+                printf("잘못된 선택 입니다.");
+                break;
+        }
+    }
+}
